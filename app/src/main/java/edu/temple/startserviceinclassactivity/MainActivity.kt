@@ -1,9 +1,12 @@
 package edu.temple.startserviceinclassactivity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+
+const val TIMER = "timer"
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,5 +17,10 @@ class MainActivity : AppCompatActivity() {
 
         val countdownStartButton = findViewById<Button>(R.id.countdownButton)
 
+
+        countdownStartButton.setOnClickListener{
+            startService(Intent(this, CountdownService::class.java)
+                .putExtra(TIMER, countdownValue.text.toString().toInt()))
+        }
     }
 }
